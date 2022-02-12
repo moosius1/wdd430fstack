@@ -12,7 +12,7 @@ export class ContactService {
   contacts: Contact[]=[];
 
   constructor() { 
-    this.contacts = MOCKCONTACTS
+    this.contacts = MOCKCONTACTS;
   }
 
 
