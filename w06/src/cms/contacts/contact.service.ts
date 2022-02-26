@@ -23,12 +23,10 @@ getContacts(): Contact[] {
 
 getContact(id:string): Contact {
   for(let contact of this.contacts){
-    if (contact.id= id){
+    if (contact.id=== id){
       return contact;
     }
-    else()=>{
-      return null;
-    }
+   
   }
   return null;
 }

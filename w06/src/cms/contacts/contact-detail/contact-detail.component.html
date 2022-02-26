@@ -4,8 +4,8 @@
     <div class="panel-heading panel-default">
         <h2>{{Contact.name}}</h2>
         <img src="{{Contact.imageUrl}}" width="100" >
-        <button class="btn btn-danger pull-right">Delete</button>
-        <button class="btn btn-primary pull-right">Edit</button>
+        <a class="btn btn-danger pull-right">Delete</a>
+        <a class="btn btn-primary pull-right" (click)="onEditContact()">Edit</a>
            
         </div>
     <div class="panel-body">

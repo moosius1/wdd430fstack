@@ -7,12 +7,8 @@ import { Message } from './messages/message.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'w02Contacts';
-  selectedFeature:string = "documents"
-
-  switchView(selectedFeature:string){
-    this.selectedFeature = selectedFeature;
-  }
+  title = 'WeLearn CMS!';
+ 
 
 
 

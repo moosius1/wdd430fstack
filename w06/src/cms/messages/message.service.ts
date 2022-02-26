@@ -26,17 +26,16 @@ getMessages(): Message[]{
 
 getMessage(id:string): Message{
   for(let message of this.messages){
-    if(message.id=id){
+    if(message.id===id){
       return message;
     }
-    else()=>{
-      return null;
-
-    }
+    
 
   }
   return null;
 }
+
+
 
 addMessage(message:Message) {
   this.messages.push(message);
