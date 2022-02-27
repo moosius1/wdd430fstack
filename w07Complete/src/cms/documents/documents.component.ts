@@ -51,8 +51,8 @@ export class DocumentsComponent implements OnInit {
 
     this.documentService.documentSelectedEvent
       .subscribe(
-        (document:Document)=>{
-          this.selectedDocument = document;
+        (documents:Document[])=>{
+          documents = documents;
         }
       )
   }
