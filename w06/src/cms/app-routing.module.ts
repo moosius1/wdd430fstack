@@ -19,6 +19,7 @@ const appRoutes: Routes = [
         
     ]},
     {path:'messages', component: MessageListComponent},
+    {path:'...', redirectTo: '/contacts', pathMatch: 'full'},
     {path:'contacts', component: ContactsComponent, children:[
         
         {path:'new', component: ContactEditComponent},

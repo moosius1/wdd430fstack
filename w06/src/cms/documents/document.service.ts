@@ -40,17 +40,16 @@ getDocument(id:string): Document{
 
 
 
-
+//gets max value of number by comparing document id against the currently looped one. 
 getMaxId(): number {
   
   let maxId = 0;
-  //loop through the array of documents
   for (const document of this.documents) {
-    //make current id a number
-    const currentId = +document.id;
     
+    const currentId = +document.id;
+    //comparison between current id and preset max id (which will only change if current is greater)
     if (currentId > maxId) {
-      //if true current id becomes maxID if false maxId stays the same. 
+   
       maxId = currentId;
     }
   }
@@ -60,48 +59,48 @@ getMaxId(): number {
 }
 
 
-  //method to add a document when user press add button
+  
   addDocument(newDocument: Document) {
-    //if null or undef...
+//checking to see if the document is valid
     if (newDocument === null || newDocument === undefined) {
-      //exit function
+    
       return;
     }
 
-    //if document exists..
-    //increment id number and assign to new document (as string)
+   //creats new id for document which is one number higher then the last loop
     this.maxDocumentId++;
     newDocument.id = this.maxDocumentId.toString();
-    //push unto list
+  
     this.documents.push(newDocument);
-    //create copy of list and emit/signal a change passing the copy
+    //creates copy of the document list with the newly added document added
     const documentListClone = this.documents.slice();
+    //emits new list out to other components
     this.documentListChanged.next(documentListClone);
   }
 
-  //method to update/replace an existing document
+
   updateDocument(originalDocument: Document, newDocument: Document) {
-    //check if document exists...
+   
     if (originalDocument === null || originalDocument === undefined || newDocument === null || newDocument === undefined) {
-      //if not, exit function
+      //checks to see if document is valid
       return;
     }
 
-    //find position/index of original document
+   
     const pos = this.documents.indexOf(originalDocument);
-    //if the position is less than 0 (meaning it is not in the list)...
+   
     if (pos < 0) {
-      //exit
+      
       return;
     }
 
-    //set the id of new document to be tht of the original
+    
     newDocument.id = originalDocument.id;
-    //set the document in the list to be the new document
+    
     document[pos] = newDocument;
-    //create copy
+   
     const documentListClone = this.documents.slice();
-    //emit/signal a change passing the copy
+   
     this.documentListChanged.next(documentListClone);
   }
 
