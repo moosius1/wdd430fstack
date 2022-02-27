@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { WindRefService } from 'src/cms/wind-ref.service';
 import { Contact } from '../contact.model';
@@ -10,7 +10,7 @@ import { ContactService } from '../contact.service';
 })
 export class ContactDetailComponent implements OnInit {
 
-  @Input() Contact: Contact;
+  Contact: Contact;
   nativeWindow:any;
   id: string;
 
@@ -35,6 +35,9 @@ export class ContactDetailComponent implements OnInit {
     this.router.navigate(['edit'], {relativeTo:this.route});
   }
 
-  
+  onDelete(){
+    this.ContactService.deleteContact(this.Contact);
+    this.router.navigate(['contacts'], {relativeTo: this.route});
+  }
 
 }

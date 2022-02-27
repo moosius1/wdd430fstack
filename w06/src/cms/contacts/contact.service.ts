@@ -7,8 +7,8 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ContactService {
-  contactSelectedEvent = new EventEmitter<Contact>();
-  contactChangedEvent = new EventEmitter<Contact>();
+  contactSelectedEvent = new Subject<Contact[]>();
+  contactChangedEvent = new Subject<Contact[]>();
 
   contacts: Contact[]=[];
 
@@ -33,13 +33,13 @@ getContact(id:string): Contact {
 }
 
 
-deleteContact(contact: Contact) {
+deleteContact(contacts: Contact) {
 
-  if (contact === null || contact === undefined) {
+  if (Contact === null || Contact === undefined) {
     return;
   }
 
-  const pos = this.contacts.indexOf(contact);
+  const pos = this.contacts.indexOf(contacts);
 
   
   if (pos < 0) {
@@ -48,7 +48,7 @@ deleteContact(contact: Contact) {
  
   this.contacts.splice(pos, 1);
   
-  this.contactChangedEvent.emit(this.contacts.slice());
+  this.contactChangedEvent.next(this.contacts.slice());
 }
 
 }

@@ -8,9 +8,8 @@ import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 })
 export class DocumentService {
   
-  documentChangedEvent = new Subject<Document>();
-
-  documentSelectedEvent = new Subject<Document>();
+ documentListChanged = new Subject<Document[]>();
+ documentSelectedEvent = new Subject<Document[]>();
 
   documents: Document[];
 
@@ -49,9 +48,10 @@ deleteDocument(documents: Document) {
   }
   
   this.documents.splice(pos, 1);
-
-  this.documentChangedEvent.next(this.documents.slice());
+  this.documentListChanged.next(this.documents.slice());
   
-}
+  
 
-}
+
+
+}}

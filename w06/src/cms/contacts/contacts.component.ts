@@ -9,7 +9,8 @@ import { ContactService } from './contact.service';
   providers:[ContactService]
 })
 export class ContactsComponent implements OnInit {
-  selectedContent:Contact;
+  contacts:Contact;
+ selectedContent:Contact;
   
 
   constructor(private contactService: ContactService) { }
@@ -18,8 +19,8 @@ export class ContactsComponent implements OnInit {
 
     this.contactService.contactSelectedEvent
       .subscribe(
-        (contact:Contact)=>{
-          this.selectedContent = contact;
+        (contacts:Contact[])=>{
+          contacts = contacts;
         }
       )
   }
