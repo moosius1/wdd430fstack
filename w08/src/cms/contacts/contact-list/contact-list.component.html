@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            
+            <a routerLink="/" class="navbar-brand">Contacts</a>
+            <a class="btn btn-success" routerLink="/contacts/new">New Contact</a>
+          </div>
+        
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-xs-12">
+        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <app-contact-item
+        
+         *ngFor="let Contact of contacts" 
+          [contacts]="Contact"
+          
+          routerLink={{Contact.id}}
+         ></app-contact-item>
+        
+    </div>
+</div>
