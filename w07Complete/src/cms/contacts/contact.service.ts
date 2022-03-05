@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, } from '@angular/core';
 import { Contact } from './contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 import { Subject } from 'rxjs';
@@ -11,9 +11,11 @@ export class ContactService {
   contactChangedEvent = new Subject<Contact[]>();
 
   contacts: Contact[]=[];
+  maxContactID: number;
 
   constructor() { 
     this.contacts = MOCKCONTACTS;
+    this.maxContactID = this.getMaxId();
   }
 
 
@@ -31,6 +33,50 @@ getContact(id:string): Contact {
   }
   return null;
 }
+
+getMaxId(): number {
+  let maxId =0;
+  for(const contact of this.contacts){
+    const currentId = + contact.id;
+
+    if (currentId > maxId) {
+      maxId = currentId;
+    }
+  }
+  return maxId;
+}
+
+addContact(newContact: Contact) {
+  if (newContact === null || newContact === undefined){
+    return;
+  }
+
+  this.maxContactID++;
+  newContact.id = this.maxContactID.toString();
+  this.contacts.push(newContact);
+  const contactListClone = this.contacts.slice();
+  this.contactChangedEvent.next(contactListClone);
+}
+
+updateContact(originalContact: Contact, newContact: Contact){
+  if (originalContact === null || originalContact === undefined || newContact ===null || newContact===undefined){
+    return;
+  }
+  const pos = this.contacts.indexOf(originalContact);
+  if(pos< 0) {
+    return;
+  }
+
+  newContact.id = originalContact.id;
+  document[pos] = newContact;
+  const contactListClone = this.contacts.slice();
+  this.contactChangedEvent.next(contactListClone);
+
+}
+
+
+
+
 
 
 deleteContact(contacts: Contact) {
@@ -52,3 +98,4 @@ deleteContact(contacts: Contact) {
 }
 
 }
+
