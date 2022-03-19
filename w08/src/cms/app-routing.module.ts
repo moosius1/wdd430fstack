@@ -12,7 +12,7 @@ import { MessageListComponent } from "./messages/message-list/message-list.compo
 const appRoutes: Routes = [
     {path:'', redirectTo: '/documents', pathMatch: 'full'},
     {path:'documents', component: DocumentsComponent, children:[
-        {path:'', component: DocumentsStartComponentComponent},
+        
         {path:'new', component: DocumentEditComponent},
         {path:':id/edit', component: DocumentEditComponent},
         {path:':id', component: DocumentDetailComponent},

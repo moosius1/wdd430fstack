@@ -21,14 +21,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { DocumentsStartComponentComponent } from './documents/documents-start-component/documents-start-component.component';
 import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
+import { DocumentService } from './documents/document.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent,
-    ContactDetailComponent,
-    ContactListComponent,
     HeaderComponent,
+    ContactsComponent,
+    ContactListComponent,
+    ContactDetailComponent,
     ContactItemComponent,
     DocumentsComponent,
     DocumentListComponent,
@@ -40,14 +42,17 @@ import { ContactEditComponent } from './contacts/contact-edit/contact-edit.compo
     MessageListComponent,
     DropdownDirective,
     DocumentEditComponent,
-    DocumentsStartComponentComponent,
     ContactEditComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ],
-  providers: [ContactService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

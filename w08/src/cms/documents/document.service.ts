@@ -2,6 +2,7 @@ import { Injectable,EventEmitter, } from '@angular/core';
 import {Subject} from 'rxjs';
 import { Document } from './document.model';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
+import { FormsModule } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,8 @@ getMaxId(): number {
 
     
     newDocument.id = originalDocument.id;
+    newDocument.name = originalDocument.name;
+    newDocument.description = originalDocument.description;
     
     document[pos] = newDocument;
    

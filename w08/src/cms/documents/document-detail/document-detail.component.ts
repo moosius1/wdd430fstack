@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { WindRefService } from 'src/cms/wind-ref.service';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-document-detail',
   templateUrl: './document-detail.component.html',
