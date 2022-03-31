@@ -68,7 +68,10 @@ updateContact(originalContact: Contact, newContact: Contact){
   }
 
   newContact.id = originalContact.id;
-  document[pos] = newContact;
+  originalContact.name = newContact.name;
+  originalContact.email = newContact.email;
+  originalContact.phone = newContact.phone;
+  originalContact.imageUrl = newContact.imageUrl;
   const contactListClone = this.contacts.slice();
   this.contactChangedEvent.next(contactListClone);
 
