@@ -23,6 +23,7 @@ import { DocumentsStartComponentComponent } from './documents/documents-start-co
 import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 import { DocumentService } from './documents/document.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DropdownDirective,
     DocumentEditComponent,
     ContactEditComponent,
+    ContactsFilterPipe,
     
   ],
   imports: [
