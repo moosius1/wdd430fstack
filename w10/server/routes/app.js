@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, 'w10\src\index.html'));
+  res.sendFile(path.join(__dirname, 'dist/w02-contacts/index.html'));
 });
 
 module.exports = router;
