@@ -1,0 +1,26 @@
+
+
+<div class="panel panel-default detail">
+    <div class="panel-heading panel-default">
+        <h2>{{Contact.name}}</h2>
+        <img src="{{Contact.imageUrl}}" width="300" >
+        
+        <h3>Build status:</h3>   
+        </div>
+    <div class="panel-body">
+        <h2>Details</h2>
+        <ul class="det-list" >
+            <li>Purchase Date:   {{Contact.email}}</li>
+            <li>Kit ranking (0-10) :{{Contact.phone}}</li>
+        </ul>
+
+
+        <button class="btn btn-primary pull-right detBut" type="button" (click)="onCancel()">Cancel</button>
+       
+        <a class="btn btn-danger pull-right detBut" (click)="onDelete()">Delete</a>
+        <a class="btn btn-success pull-right detBut" (click)="onEditContact()">Edit</a>
+        
+        
+        
+    </div>
+  </div>

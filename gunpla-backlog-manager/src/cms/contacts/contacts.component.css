@@ -1,0 +1,22 @@
+.detail{
+   top:20px;
+float:right;
+grid-column:1;
+grid-row:2;
+margin-left: 150px;
+margin-right:40px;
+margin-top:240px;
+}
+
+.col-md-10{
+    float: left;
+    grid-column: 2;
+    grid-row:2;
+    width: 100%;
+    margin-left: 50px;
+}
+.backlog-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}

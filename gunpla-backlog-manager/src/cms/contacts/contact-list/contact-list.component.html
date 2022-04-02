@@ -1,0 +1,45 @@
+
+<div class="search-title-bar">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            
+            <h1  class="pagetitle">Backlog Manager</h1>
+            
+          </div>
+        
+    </div>
+</nav>
+
+<div class="row" >
+    <div class="input-group   ">
+      <input #searchBox type="text"  (keyup)="search(searchBox.value)" class="form-control"
+        placeholder="Search by kit name or series">
+      <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
+    </div>
+   
+  </div>
+
+  <a class="btn btn-success pull-right new-kit" routerLink="/contacts/new">New Contact</a>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12 ">
+        
+    </div>
+</div>
+
+<div class="row model-rows">
+    <div class="model-rows">
+        <app-contact-item class="inactive"
+        (click)="toggleclass()" (click)="toggleclass2()"
+        
+         *ngFor="let Contact of contacts | contactsFilter:term" 
+          [contacts]="Contact"
+          
+          routerLink={{Contact.id}}
+         ></app-contact-item>
+        
+    </div>
+</div>

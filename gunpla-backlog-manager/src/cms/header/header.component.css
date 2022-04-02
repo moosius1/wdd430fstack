@@ -1,0 +1,13 @@
+.navbar-collapse{
+    background-color: white;
+}
+
+.container-fluid{
+    background-color: white;
+}
+
+.head{
+    display:grid;
+    grid-template-columns: 400px 400px;
+    grid-template-rows: 30px;
+}

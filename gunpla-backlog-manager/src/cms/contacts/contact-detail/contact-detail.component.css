@@ -1,0 +1,29 @@
+.detail{
+display:grid;
+grid-template-columns: 1fr 1fr;
+border-radius: 5px;
+
+}
+
+.detBut{
+    margin:5px;
+    margin-top: 500px;
+}
+
+
+
+.det-list{
+    font-size: 14pt;
+    
+}
+
+.btn{
+    font-size: 16pt;
+}
+
+.panel-heading{
+    background-color: white;
+    border-right:2px solid black;
+    
+}
+
