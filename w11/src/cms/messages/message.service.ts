@@ -24,22 +24,21 @@ export class MessageService {
 
   }
 
-getMessages(): Message[]{
-  this.http.get<Message[]>('https://wdd430-d8661-default-rtdb.firebaseio.com/messages.json')
-  .subscribe(
-    (messages: Message[]) =>{
-      this.messages = messages
-      this.maxMessageId = this.getMaxId();
-      this.messages.sort();
-      this.messageChangedEvent.next(this.messages.slice());
-
-    },
-    (error:any) =>{
-      console.log(error.message);
-    }
-  )
-  return this.messages.slice();
-}
+  getMessages(): Message[] {
+    this.http.get('http://localhost:3000/messages')
+    .subscribe(
+      (messages: Message[]) => {
+        this.messages = messages
+        this.maxMessageId = this.getMaxId();
+        this.messages.sort();
+        this.messageChangedEvent.next(this.messages.slice());
+      }, 
+      (error: any) => {
+        console.log(error.message);
+      }
+    )
+    return this.messages.slice();
+  }
 
 storeMessages(){
   const json = JSON.stringify(this.messages);
@@ -84,12 +83,51 @@ getMaxId(): number {
 }
 
 
+addMessage(message: Message) {
+  if (!message) {
+    return;
+  }
 
-addMessage(message:Message) {
-  this.messages.push(message);
-  this.storeMessages();
+  // make sure id of the new Document is empty
+  message.id = '';
 
+  const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+  // add to database
+  this.http.post<{ message: string, newMessage: Message }>('http://localhost:3000/messages',
+    message, { headers: headers })
+    .subscribe(
+      (responseData) => {
+        console.log(responseData.message);
+        // add new document to documents
+        this.messages.push(responseData.newMessage);
+        this.messages.sort();
+        this.messageChangedEvent.next(this.messages.slice());
+      }
+    );
 }
+
+deleteMessage(message: Message) {
+  if (!message) {
+    return;
+  }
+
+  const pos = this.messages.findIndex(d => d.id === message.id);
+  if (pos < 0) {
+    return;
+  }
+
+  // delete from database
+  this.http.delete('http://localhost:3000/messages/' + message.id)
+    .subscribe(
+      (response: Response) => {
+        this.messages.splice(pos, 1);
+        this.messages.sort();
+        this.messageChangedEvent.next(this.messages.slice());
+      }
+    );
+}
+
 
 
 }

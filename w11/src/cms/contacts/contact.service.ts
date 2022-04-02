@@ -22,7 +22,7 @@ export class ContactService {
 
 
 getContacts(): Contact[] {
-  this.http.get<Contact[]>('https://wdd430-d8661-default-rtdb.firebaseio.com/contacts.json')
+  this.http.get<Contact[]>('http://localhost:3000/contacts')
   .subscribe(
     (contacts: Contact[]) =>{
       this.contacts = contacts
@@ -74,15 +74,27 @@ getMaxId(): number {
 }
 
 addContact(newContact: Contact) {
-  if (newContact === null || newContact === undefined){
+  if (!newContact) {
     return;
   }
+  // make sure id of the new object is empty
+  newContact.id = '';
 
-  this.maxContactID++;
-  newContact.id = this.maxContactID.toString();
-  this.contacts.push(newContact);
-  const contactListClone = this.contacts.slice();
-  this.storeContacts()
+  const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+  // add to database
+  this.http.post<{ message: string, contact: Contact }>('http://localhost:3000/contacts',
+  newContact,
+  { headers: headers })
+  .subscribe(
+    (responseData) => {
+      console.log(responseData.message);
+      // add new document to documents
+      this.contacts.push(responseData.contact);
+      this.contacts.sort();
+      this.contactChangedEvent.next(this.contacts.slice());
+    }
+  );
 }
 
 updateContact(originalContact: Contact, newContact: Contact){
@@ -109,22 +121,25 @@ updateContact(originalContact: Contact, newContact: Contact){
 
 
 
-deleteContact(contacts: Contact) {
-
-  if (Contact === null || Contact === undefined) {
+deleteContact(contact: Contact) { 
+  if (!contact) {
     return;
-  }
-
-  const pos = this.contacts.indexOf(contacts);
-
-  
-  if (pos < 0) {
+ }
+ const pos = this.contacts.indexOf(contact);
+ if (pos < 0) {
     return;
-  }
- 
-  this.contacts.splice(pos, 1);
-  
-  this.storeContacts()
+ }
+
+ // delete from database
+ this.http.delete('http://localhost:3000/contacts/' + contact.id)
+   .subscribe(
+     (response: Response) => {
+       this.contacts.splice(pos, 1);
+       this.contacts.sort();
+       this.contactChangedEvent.next(this.contacts.slice());
+     }
+   );
+
 }
 
 }
