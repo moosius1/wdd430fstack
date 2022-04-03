@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit,EventEmitter } from '@angular/core';
+import { Kit } from '../kit.model';
 
 @Component({
   selector: 'app-kit-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kit-item.component.css']
 })
 export class KitItemComponent implements OnInit {
+  collapsed = false;
+  @Input() kits:Kit;
 
   constructor() { }
 

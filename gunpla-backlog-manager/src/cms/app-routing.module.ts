@@ -16,19 +16,13 @@ import { KitListComponent } from "./kits/kit-list/kit-list.component";
 
 
 const appRoutes: Routes = [
-    {path:'', redirectTo: '/contacts', pathMatch: 'full'},
+    {path:'', redirectTo: '/kits', pathMatch: 'full'},
   
         
     
     
-    {path:'...', redirectTo: '/contacts', pathMatch: 'full'},
-    {path:'contacts', component: ContactsComponent, children:[
-        
-        {path:'new', component: ContactEditComponent},
-        {path:':id/edit', component: ContactEditComponent},
-        {path:':id', component: ContactDetailComponent},
-        
-    ]},
+    {path:'...', redirectTo: '/kits', pathMatch: 'full'},
+   
     {path:'kits', component: KitsComponent, children:[
 
         {path:'new',component: KitEditComponent},

@@ -14,7 +14,7 @@ export class KitService {
   maxKitID: number;
 
   constructor(private http:HttpClient) {
-     this.maxKitID = this.getMaxId();
+    
    }
 
    getKits(): Kit[] {
@@ -36,7 +36,7 @@ export class KitService {
    storeKits(){
      const json = JSON.stringify(this.kits);
      this.http.put<Kit[]>(
-       'https://localhost:3000/kits', json,
+       'https://wdd430-d8661-default-rtdb.firebaseio.com/kits.json', json,
        {
          headers: new HttpHeaders({'Content-Type':'application/json'})
        }
@@ -79,7 +79,7 @@ export class KitService {
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     
-    this.http.post<{message: string, kit: Kit}>('http://localhost:3000/contacts',
+    this.http.post<{message: string, kit: Kit}>('http://localhost:3000/kits',
     newKit,
     {headers: headers})
     .subscribe(

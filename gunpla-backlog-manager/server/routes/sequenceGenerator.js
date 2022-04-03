@@ -1,8 +1,7 @@
 var Sequence = require('../models/sequence');
 
-var maxDocumentId;
-var maxMessageId;
-var maxContactId;
+
+var maxKitId;
 var sequenceId = null;
 
 function SequenceGenerator() {
@@ -17,9 +16,8 @@ function SequenceGenerator() {
       }
 
       sequenceId = sequence._id;
-      maxDocumentId = sequence.maxDocumentId;
-      maxMessageId = sequence.maxMessageId;
-      maxContactId = sequence.maxContactId;
+
+      maxKitId = sequence.maxKitId;
     });
 }
 
@@ -29,26 +27,16 @@ SequenceGenerator.prototype.nextId = function(collectionType) {
   var nextId;
 
   switch (collectionType) {
-    case 'documents':
-      maxDocumentId++;
-      updateObject = {maxDocumentId: maxDocumentId};
-      nextId = maxDocumentId;
-      break;
-    case 'messages':
-      maxMessageId++;
-      updateObject = {maxMessageId: maxMessageId};
-      nextId = maxMessageId;
-      break;
-    case 'contacts':
-      maxContactId++;
-      updateObject = {maxContactId: maxContactId};
-      nextId = maxContactId;
+    case 'kits':
+      maxKitId++;
+      updateObject = {maxKitId: maxKitId};
+      nextId = maxKitId;
       break;
     default:
       return -1;
   }
 
-  Sequence.update({_id: sequenceId}, {$set: updateObject},
+  Sequence.updateOne({_id: sequenceId}, {$set: updateObject},
     function(err) {
       if (err) {
         console.log("nextId error = " + err);

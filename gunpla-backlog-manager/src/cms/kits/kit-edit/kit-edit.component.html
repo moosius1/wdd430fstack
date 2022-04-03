@@ -1,1 +1,94 @@
-<p>kit-edit works!</p>
+<div class="panel panel-default edit-kit">
+    <div class="panel-body">
+      <form id="kit-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              [ngModel]="kit?.name"
+              #name="ngModel"
+              class="form-control "
+              size="120"
+              max="120"
+              >
+          </div>
+  
+          <div class="col-sm-12 form-group">
+            <label for="email">Purchase Date</label>
+            <input
+              type="text"
+              id="purchaseDate"
+              name="purchaseDate"
+              [ngModel]="kit?.purchaseDate"
+              #purchaseDate="ngModel"
+              class="form-control "
+              size="120"
+              max="255"
+              
+              >
+          </div>
+         
+  
+          <div class="col-sm-12 form-group">
+            <label for="phone">Score out of 10</label>
+            <input
+              type="text"
+              id="score"
+              name="score"
+              [ngModel]="kit?.score"
+              #score="ngModel"
+              class="form-control invalid"
+              size="150"
+              max="255"
+              >
+          </div>
+          
+  
+          <div class="col-sm-12 form-group">
+            <label for="imageUrl">Image URL</label>
+            <input
+              type="text"
+              id="imageUrl"
+              name="imageUrl"
+              [ngModel]="kit?.imageUrl"
+              #imageUrl="ngModel"
+              class="form-control"
+              size="150"
+              max="255">
+          </div>
+
+
+          <div class="col-sm-12 form-group">
+            <label for="buildStatus">Build Status</label>
+            <input
+              type="text"
+              id="buildStatus"
+              name="buildStatus"
+              [ngModel]="kit?.buildStatus"
+              #buildStatus="ngModel"
+              class="form-control"
+              size="150"
+              max="255">
+          </div>
+
+
+
+        </div>
+  
+       
+  
+       
+  
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+            <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>
+  
+      </form>
+    </div>
+  </div>

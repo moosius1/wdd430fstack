@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Kit } from '../kit.model';
+import { KitService } from '../kit.service';
 
 @Component({
   selector: 'app-kit-list',
@@ -7,9 +10,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KitListComponent implements OnInit {
 
-  constructor() { }
+  private subscription: Subscription;
+  term: string;
 
-  ngOnInit(): void {
+  collapsed=false;
+
+  kits: Kit[] = [];
+
+    
+  constructor(private KitService: KitService) { }
+
+
+  search(value: string) {
+    this.term = value;
+  }
+
+  ngOnInit() {
+
+    this.kits = this.KitService.getKits();
+    this.subscription = this.KitService.kitChangedEvent
+    .subscribe(
+      (kits: Kit[]) =>{
+        this.kits = kits;
+      }
+    )
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  toggleclass() {
+    var element = document.getElementById("itemToggle");
+    element.classList.toggle("active");
+  }
+
+  toggleclass2() {
+    var element = document.getElementById("itemToggle");
+    element.classList.toggle("inactive");
   }
 
 }
